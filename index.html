@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="LazyFlow AI — Your smart local productivity companion. Clean up messy notes, fix grammar, explain code, organize meetings, draft emails, and plan your day.">
+    <title>LazyFlow AI — Let AI Handle the Busywork</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+        <a class="brand" href="#" aria-label="LazyFlow AI Home">
+            <span class="brand-sparkle">✦</span> LazyFlow <span class="brand-badge">AI</span>
+        </a>
+        <div class="topbar-actions">
+            <div id="modeLabel" class="status-pill status-demo" title="Current execution mode">
+                <span class="status-dot"></span>
+                <span class="status-text">Demo mode</span>
+            </div>
+            <button id="historyToggleBtn" class="icon-btn" title="View Recent History" aria-label="View Recent History">
+                <span class="btn-icon">⏱</span>
+                <span class="history-count" id="historyCount">0</span>
+            </button>
+            <button id="themeToggleBtn" class="icon-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+                <span id="themeIcon">☀️</span>
+            </button>
+            <button id="settingsBtn" class="icon-btn" title="AI Settings & Ollama" aria-label="Settings">
+                <span class="btn-icon">⚙</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    <span>LOCAL-FIRST AI WORKFLOWS</span>
+                </div>
+                <h1>Do less busywork.<br><span class="gradient-text">Keep your flow.</span></h1>
+                <p class="hero-copy">
+                    Drop in the messy stuff — rough notes, broken grammar, cryptic code, or chaotic meetings.
+                    Get back clean, actionable output in seconds without sacrificing privacy.
+                </p>
+                <div class="hero-features">
+                    <span class="feature-tag">🔒 100% Private & Local</span>
+                    <span class="feature-tag">⚡ Instant Demo Mode</span>
+                    <span class="feature-tag">🦙 Ollama & Model Agnostic</span>
+                </div>
+            </div>
+            <div class="hero-art">
+                <div class="illustration-card glow-card">
+                    <div class="card-glow-orb"></div>
+                    <div class="card-icon-wrap">
+                        <span class="card-emoji">☾</span>
+                    </div>
+                    <h3>Take it easy.</h3>
+                    <p>Let AI handle the tedious tasks.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="card-footer-metric">
+                        <span>Workflow ready</span>
+                        <span class="metric-highlight">✦ 7 Tools</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Showcase Section -->
+        <section class="section">
+            <div class="section-header">
+                <div>
+                    <h2>What can I take off your plate?</h2>
+                    <p class="muted">Select any productivity workflow below.</p>
+                </div>
+                <!-- Category Filter Tabs -->
+                <div class="filter-tabs" role="tablist" aria-label="Tool Categories">
+                    <button class="filter-tab active" data-filter="all">All (7)</button>
+                    <button class="filter-tab" data-filter="writing">Writing & Tone</button>
+                    <button class="filter-tab" data-filter="productivity">Productivity</button>
+                    <button class="filter-tab" data-filter="dev">Code & Tech</button>
+                </div>
+            </div>
+
+            <div class="task-grid" id="taskGrid">
+                <!-- 1. Summarize text -->
+                <button class="task-card selected" data-task="summarize" data-category="writing">
+                    <div class="task-icon purple">≋</div>
+                    <strong>Summarize text</strong>
+                    <small>Condense long articles, reports, or threads into crisp takeaways.</small>
+                    <span class="task-category-tag">Writing</span>
+                </button>
+
+                <!-- 2. Fix grammar & tone (NEW) -->
+                <button class="task-card" data-task="grammar" data-category="writing">
+                    <div class="task-icon teal">✍</div>
+                    <strong>Fix grammar & tone</strong>
+                    <small>Polish typos, refine phrasing, and elevate sentence structure.</small>
+                    <span class="task-category-tag">Writing</span>
+                </button>
+
+                <!-- 3. Organize notes -->
+                <button class="task-card" data-task="todos" data-category="productivity">
+                    <div class="task-icon green">☑</div>
+                    <strong>Organize notes</strong>
+                    <small>Convert messy brain-dumps into organized, prioritized action items.</small>
+                    <span class="task-category-tag">Productivity</span>
+                </button>
+
+                <!-- 4. Draft an email -->
+                <button class="task-card" data-task="email" data-category="writing">
+                    <div class="task-icon orange">✉</div>
+                    <strong>Draft an email</strong>
+                    <small>Turn bullet thoughts into polite, articulate, ready-to-send emails.</small>
+                    <span class="task-category-tag">Writing</span>
+                </button>
+
+                <!-- 5. Meeting notes organizer (NEW) -->
+                <button class="task-card" data-task="meeting" data-category="productivity">
+                    <div class="task-icon indigo">👥</div>
+                    <strong>Meeting notes</strong>
+                    <small>Extract executive summary, decisions, and clear action owners.</small>
+                    <span class="task-category-tag">Productivity</span>
+                </button>
+
+                <!-- 6. Explain code (NEW) -->
+                <button class="task-card" data-task="code" data-category="dev">
+                    <div class="task-icon cyan">⟨/⟩</div>
+                    <strong>Explain code</strong>
+                    <small>Understand complex code snippets, bugs, and edge cases in plain English.</small>
+                    <span class="task-category-tag">Code</span>
+                </button>
+
+                <!-- 7. Plan my day -->
+                <button class="task-card" data-task="plan" data-category="productivity">
+                    <div class="task-icon blue">◷</div>
+                    <strong>Plan my day</strong>
+                    <small>Structure your priorities into realistic, balanced focus blocks.</small>
+                    <span class="task-category-tag">Productivity</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Active Workspace Panel -->
+        <section class="panel editor-panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">ACTIVE WORKFLOW</p>
+                    <h2 id="taskTitle">Summarize text</h2>
+                </div>
+                <div class="panel-header-actions">
+                    <button id="insertSampleBtn" class="pill-btn" title="Load sample input text">
+                        <span>✨ Try sample</span>
+                    </button>
+                    <button id="clearInputBtn" class="pill-btn subtle" title="Clear input field">
+                        <span>✕ Clear</span>
+                    </button>
+                </div>
+            </div>
+
+            <label id="inputLabel" for="userInput">What should I summarize?</label>
+            <div class="textarea-wrapper">
+                <textarea id="userInput" rows="7" placeholder="Paste your text here..."></textarea>
+            </div>
+
+            <div class="input-meta">
+                <div class="counters">
+                    <span id="charCount">0 characters</span>
+                    <span class="counter-dot">·</span>
+                    <span id="wordCount">0 words</span>
+                </div>
+                <span class="privacy-tip">🔒 Processed locally in your browser / model</span>
+            </div>
+
+            <div class="actions">
+                <div class="model-field">
+                    <label for="modelSelect">Local model</label>
+                    <div class="select-wrapper">
+                        <select id="modelSelect">
+                            <option value="qwen2.5:3b">qwen2.5:3b (Recommended)</option>
+                            <option value="llama3.2:3b">llama3.2:3b (Fast)</option>
+                            <option value="deepseek-r1:8b">deepseek-r1:8b (Reasoning)</option>
+                            <option value="mistral:7b">mistral:7b (Capable)</option>
+                            <option value="phi3:mini">phi3:mini (Lightweight)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="run-actions">
+                    <button id="runBtn" class="primary-btn">
+                        <span class="btn-spinner hidden" id="btnSpinner"></span>
+                        <span id="runBtnText">✦ Make it easier →</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="notice">
+                <div class="notice-icon">ℹ</div>
+                <p id="noticeText">Demo mode is active. Connect Ollama in Settings to use real local AI.</p>
+                <button id="configureBtn">Configure Ollama</button>
+            </div>
+        </section>
+
+        <!-- Result Output Panel -->
+        <section id="resultPanel" class="panel result-panel hidden" aria-live="polite">
+            <div class="result-top">
+                <div>
+                    <p class="eyebrow">OUTPUT READY</p>
+                    <h2 id="resultTitle">Your result</h2>
+                </div>
+                <div class="result-badges">
+                    <span id="resultBadge" class="result-badge">Demo result — not AI</span>
+                    <span id="resultTimeBadge" class="time-badge">0.2s</span>
+                </div>
+            </div>
+
+            <div class="result-box">
+                <div class="result-toolbar">
+                    <span class="result-format-label" id="resultFormatLabel">Formatted Output</span>
+                    <div class="result-actions">
+                        <button id="copyBtn" class="tool-btn" title="Copy to clipboard">
+                            <span>📋 Copy</span>
+                        </button>
+                        <button id="downloadBtn" class="tool-btn" title="Download as Markdown file">
+                            <span>⬇ Markdown</span>
+                        </button>
+                    </div>
+                </div>
+                <pre id="resultText" class="result-text"></pre>
+            </div>
+
+            <div class="result-footer">
+                <p class="fine-print">💡 Always verify outputs before relying on them for critical communication or code execution.</p>
+            </div>
+        </section>
+
+        <!-- Ollama Connection Guide Section -->
+        <section class="panel guide-panel">
+            <div class="guide-header">
+                <div class="guide-icon">🦙</div>
+                <div>
+                    <p class="eyebrow">UNLEASH FULL CAPABILITY</p>
+                    <h2>Connect Real Local AI (Free & Private)</h2>
+                </div>
+            </div>
+            <p class="muted">
+                Run powerful models right on your machine with zero subscription fees, complete data privacy, and offline support via <a href="https://ollama.com/" target="_blank" rel="noreferrer">Ollama</a>:
+            </p>
+            <div class="command-group">
+                <pre class="command"><span class="cmd-prompt">$</span> ollama pull qwen2.5:3b</pre>
+                <button class="cmd-copy-btn" data-copy="ollama pull qwen2.5:3b" title="Copy command">Copy</button>
+            </div>
+            <p class="muted small-note">
+                Ensure Ollama is running (`ollama serve`), then open <strong>Settings</strong> to verify your connection.
+            </p>
+        </section>
+    </main>
+
+    <!-- Recent History Drawer / Modal -->
+    <dialog id="historyDialog" class="app-dialog">
+        <div class="dialog-header">
+            <h3>Recent Generations</h3>
+            <button id="closeHistory" class="close-icon-btn" aria-label="Close History">✕</button>
+        </div>
+        <div class="dialog-body">
+            <div id="historyList" class="history-list">
+                <p class="empty-state">No saved outputs yet. Run any workflow to save it here!</p>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <button id="clearHistoryBtn" class="secondary-btn danger-btn">Clear history</button>
+            <button id="closeHistoryBtn" class="secondary-btn">Close</button>
+        </div>
+    </dialog>
+
+    <!-- Settings Dialog -->
+    <dialog id="settingsDialog" class="app-dialog">
+        <form id="settingsForm">
+            <div class="dialog-header">
+                <h2>AI & Model Settings</h2>
+                <button type="button" id="closeSettingsX" class="close-icon-btn" aria-label="Close Settings">✕</button>
+            </div>
+            <div class="dialog-body">
+                <div class="form-group">
+                    <label for="endpointInput">Ollama Endpoint URL</label>
+                    <input id="endpointInput" type="url" value="http://localhost:11434" placeholder="http://localhost:11434" required>
+                    <small class="field-hint">Default local address: http://localhost:11434</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="modelInput">Active Model Tag</label>
+                    <input id="modelInput" type="text" value="qwen2.5:3b" placeholder="e.g. qwen2.5:3b, llama3.2:3b" required>
+                    <div class="quick-model-tags">
+                        <span class="quick-tag" data-model="qwen2.5:3b">qwen2.5:3b</span>
+                        <span class="quick-tag" data-model="llama3.2:3b">llama3.2:3b</span>
+                        <span class="quick-tag" data-model="deepseek-r1:8b">deepseek-r1:8b</span>
+                        <span class="quick-tag" data-model="mistral:7b">mistral:7b</span>
+                    </div>
+                </div>
+
+                <div class="connection-status-box">
+                    <span id="settingsStatusIcon">⚪</span>
+                    <p id="settingsStatus">Not tested yet.</p>
+                </div>
+            </div>
+            <div class="dialog-footer">
+                <button type="button" id="closeSettings" class="secondary-btn">Cancel</button>
+                <button type="button" id="testBtn" class="secondary-btn">Test Connection</button>
+                <button type="submit" class="primary-btn">Save Settings</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p><strong>LazyFlow AI</strong> · Built with HTML, CSS, JavaScript and local open-weight AI.</p>
+            <p class="footer-sub">Private by design. No cloud tracking. No data retention.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
